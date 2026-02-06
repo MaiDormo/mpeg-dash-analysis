@@ -5,7 +5,6 @@ This repository contains the codebase for my thesis project, focusing on video s
 ## 🎥 Demo
 
 ![Project Demo](demo.gif)
-*(Add a GIF here showing the Mininet topology startup and the video player client with real-time charts)*
 
 ## 🚀 Quick Start
 

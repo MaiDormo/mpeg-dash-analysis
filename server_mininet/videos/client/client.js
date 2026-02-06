@@ -199,6 +199,11 @@ if (video.webkitVideoDecodedByteCount !== undefined) {
         effectiveBitrates.push(calculatedBitrate);
         lastDecodedByteCount = video.webkitVideoDecodedByteCount;
     }, bitrateInterval *  1000);
+} else {
+    const bitrateInterval = 1;
+    var bitrateCalculator = setInterval(() => {
+        effectiveBitrates.push(0);
+    }, bitrateInterval * 1000);
 }
 
 function logDownloadRate(e) {

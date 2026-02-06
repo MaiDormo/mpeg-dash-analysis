@@ -8,13 +8,13 @@ console.log(`Current Working Directory: ${currentWorkingDirectory}`);
 let serverStartTime = null;
 
 const server = http.createServer(handleRequest);
-server.listen(1337, '10.0.0.1', startServer);
+server.listen(1337, '0.0.0.0', startServer);
 
 process.on('SIGINT', stopServer);
 
 function startServer() {
     console.log(`Running node.js ${process.version} on ${process.platform}-${process.arch}`);
-    console.log('Server running at http://10.0.0.1:1337/');
+    console.log('Server running at http://0.0.0.0:1337/');
     serverStartTime = Date.now();
 }
 
@@ -57,6 +57,7 @@ function getContentType(extname) {
         '.mpd': 'application/dash+xml',
         '.mp4': 'video/mp4',
         '.m4a': 'audio/m4a',
+        '.js': 'application/javascript',
     };
     return contentTypes[extname] || 'text/html';
 }

@@ -104,6 +104,8 @@ function getContentType(extname) {
             return 'video/mp4';
         case '.m4a':
             return 'audio/m4a';
+        case '.js':
+            return 'application/javascript';
         default:
             return 'text/html';
     }

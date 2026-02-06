@@ -24,7 +24,7 @@ def create_network(bw, delay, loss):
         net.addLink(hosts[i], switches[0], cls=TCLink)
         net.addLink(hosts[i+2], switches[1], cls=TCLink)
 
-    net.addLink(switches[0], switches[1], cls=TCLink, bw=bw+'ms', delay=delay, loss=loss)
+    net.addLink(switches[0], switches[1], cls=TCLink, bw=bw, delay=delay+'ms', loss=loss)
     net.build()
 
     for controller in net.controllers:

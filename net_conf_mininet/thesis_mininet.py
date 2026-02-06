@@ -2,7 +2,7 @@
 
 import argparse
 from mininet.net import Mininet
-from mininet.node import RemoteController, OVSKernelSwitch, Host
+from mininet.node import Controller, OVSKernelSwitch, Host
 from mininet.cli import CLI
 from mininet.log import setLogLevel
 from mininet.link import TCLink
@@ -16,7 +16,7 @@ def parse_arguments():
 
 def create_network(bw, delay, loss):
     net = Mininet(topo=None, build=False, ipBase='10.0.0.0/8')
-    c0 = net.addController(name='c0', controller=RemoteController, ip='192.168.56.9', port=6633)
+    c0 = net.addController(name='c0', controller=Controller)
     switches = [net.addSwitch(f's{i+1}', cls=OVSKernelSwitch) for i in range(2)]
     hosts = [net.addHost(f'h{i+1}', cls=Host, ip=f'10.0.0.{i+1}', defaultRoute=None) for i in range(4)]
 
@@ -24,7 +24,7 @@ def create_network(bw, delay, loss):
         net.addLink(hosts[i], switches[0], cls=TCLink)
         net.addLink(hosts[i+2], switches[1], cls=TCLink)
 
-    net.addLink(switches[0], switches[1], cls=TCLink, bw=bw, delay=delay+'ms', loss=loss)
+    net.addLink(switches[0], switches[1], cls=TCLink, bw=bw+'ms', delay=delay, loss=loss)
     net.build()
 
     for controller in net.controllers:
